@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "build": "tsc",
+    "lint:spell": "cspell '**'"
+  },
+  "dependencies": {
+    "cspell": "^6.19.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  }
+}
