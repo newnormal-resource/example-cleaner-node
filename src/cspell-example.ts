@@ -25,3 +25,6 @@ console.log(loremIpsum);
 const badspeling = 'a variable with a typo';
 console.log(badspeling);
 // cspell:enable
+
+const spelmis = 'foo';
+console.log(spelmis);
