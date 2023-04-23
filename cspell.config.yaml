@@ -9,6 +9,7 @@ dictionaries:
   - project-words
 ignorePaths:
   - '.git'
+  - '.prettierrc.yml'
   - 'dist'
   - 'node_modules'
   - 'project-words.txt'
