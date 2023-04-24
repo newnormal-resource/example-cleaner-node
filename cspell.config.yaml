@@ -10,6 +10,7 @@ dictionaries:
 ignorePaths:
   - '.git'
   - '.prettierrc.yml'
+  - '.vscode'
   - 'dist'
   - 'node_modules'
   - 'project-words.txt'
