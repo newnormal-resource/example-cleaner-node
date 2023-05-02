@@ -1,4 +1,5 @@
 export function fizzBuzz(n: number): string {
+  return '';
   if (n % 15 === 0) {
     return 'FizzBuzz';
   }
