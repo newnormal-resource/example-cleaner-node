@@ -32,12 +32,12 @@ This project uses [Jest](https://jestjs.io/) for unit testing.
 
 ### Usage
 
-Run `npm run test` to run unit tests. For example:
+Run `npm test` to run unit tests. For example:
 
 [//]: # "cspell:disable"
 
 ```console
-$ npm run test
+$ npm test
 
 > test
 > jest --coverage
