@@ -12,5 +12,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Check spelling
-        uses: streetsidesoftware/cspell-action@v2
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run CI checking
+        run: npm run ci
