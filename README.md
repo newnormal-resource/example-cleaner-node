@@ -26,6 +26,49 @@ Use `pre-commit` hooks to force cleaning, for example spell checking and linting
     pre-commit install --install-hooks
     ```
 
+## Linting
+
+This project uses [ESLint](https://eslint.org/) for linting.
+
+### Usage
+
+Run `npm run lint:eslint`. For example:
+
+```console
+$ npm run lint:eslint
+
+> lint:eslint
+> eslint src --ext .ts --max-warnings 0
+
+
+/tmp/example-cleaner-node/src/lint-issues.ts
+  1:10  warning  'greet' is defined but never used         @typescript-eslint/no-unused-vars
+  1:40  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 2 problems (0 errors, 2 warnings)
+
+ESLint found too many warnings (maximum: 0).
+```
+
+## Formatting
+
+This project uses [Prettier](https://prettier.io/) for formatting.
+
+### Usage
+
+Run `npm run lint:format` to check your code is appropriately formatted. For example:
+
+```console
+$ npm run lint:format
+
+> lint:format
+> prettier --check src/**/*.ts
+
+Checking formatting...
+[warn] src/lint-issues.ts
+[warn] Code style issues found in the above file. Forgot to run Prettier?
+```
+
 ## Spell checking
 
 ### Usage
@@ -90,3 +133,9 @@ cspell...................................................................Failed
 ### Ignore project-specific words
 
 When the spell checker does not know your project-specific words and it treats them as errors, you can add the words to the project dictionary to make the checker ignore them. The dictionary file is `project-words.txt` in this repository. You can specify any file name as you like in the cspell config `cspell.config.yaml`.
+
+## Integration with your editor/IDE
+
+### VS Code
+
+All you have to do is just install the workspace recommended extensions. See the [instruction](https://code.visualstudio.com/docs/editor/extension-marketplace#_workspace-recommended-extensions).
