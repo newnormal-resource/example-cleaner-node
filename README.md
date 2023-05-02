@@ -26,6 +26,41 @@ Use `pre-commit` hooks to force cleaning, for example spell checking and linting
     pre-commit install --install-hooks
     ```
 
+## Unit testing
+
+This project uses [Jest](https://jestjs.io/) for unit testing.
+
+### Usage
+
+Run `npm run test` to run unit tests. For example:
+
+[//]: # "cspell:disable"
+
+```console
+$ npm run test
+
+> test
+> jest --coverage
+
+ PASS  __tests__/fizz-buzz.spec.ts
+ PASS  __tests__/fibonacci.spec.ts
+--------------|---------|----------|---------|---------|-------------------
+File          | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+--------------|---------|----------|---------|---------|-------------------
+All files     |     100 |      100 |     100 |     100 |
+ fibonacci.ts |     100 |      100 |     100 |     100 |
+ fizz-buzz.ts |     100 |      100 |     100 |     100 |
+--------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 2 passed, 2 total
+Tests:       11 passed, 11 total
+Snapshots:   0 total
+Time:        1.778 s, estimated 2 s
+Ran all test suites.
+```
+
+[//]: # "cspell:enable"
+
 ## Linting
 
 This project uses [ESLint](https://eslint.org/) for linting.
