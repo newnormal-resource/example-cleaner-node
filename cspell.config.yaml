@@ -18,3 +18,4 @@ ignorePaths:
   - 'package.json'
   - 'project-words.txt'
   - 'tsconfig.json'
+  - 'tsconfig.*.json'

@@ -3,7 +3,7 @@
     "build": "tsc",
     "ci": "npm test && npm run lint:eslint && npm run lint:format && npm run lint:spell",
     "test": "jest --coverage",
-    "lint:eslint": "eslint src --ext .ts --max-warnings 0",
+    "lint:eslint": "eslint src __tests__ --ext .ts --max-warnings 0",
     "lint:format": "prettier --check src/**/*.ts",
     "lint:spell": "cspell '**'",
     "fix:eslint": "npm run lint:eslint -- --fix",
