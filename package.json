@@ -1,6 +1,8 @@
 {
   "scripts": {
+    "prebuild": "rm -rf dist",
     "build": "tsc",
+    "postbuild": "cd dist && zip -r index.zip *.js",
     "ci": "npm test && npm run lint:eslint && npm run lint:format && npm run lint:spell",
     "test": "jest --coverage",
     "lint:eslint": "eslint src __tests__ --ext .ts --max-warnings 0",
