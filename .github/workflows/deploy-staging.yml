@@ -1,0 +1,45 @@
+name: Deploy to staging
+
+on:
+  push:
+    branches:
+      - staging
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: CI checking
+        run: npm run ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Deploy to staging
+        run: |
+          aws lambda update-function-code --function-name example-cleaner-node-staging --zip-file fileb://dist/index.zip
+          sleep 10
+
+      - name: Run API testing
+        run: |
+          BASE_URL=$(aws lambda get-function-url-config --function-name example-cleaner-node-staging | jq -r .FunctionUrl | sed 's,/$,,')
+          npx newman run --env-var "BASE_URL=${BASE_URL}" api-tests/example-cleaner-node.postman_collection.json | sed 's,https://[^/]*,https://***,'
