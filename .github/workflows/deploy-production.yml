@@ -1,9 +1,9 @@
-name: Deploy to staging
+name: Deploy to production
 
 on:
   push:
-    branches:
-      - staging
+    tags:
+      - v*.*.*
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -39,7 +39,17 @@ jobs:
           aws lambda update-function-code --function-name ${{ secrets.LAMBDA_FUNCTION_NAME_STAGING }} --zip-file fileb://dist/index.zip
           sleep 10
 
-      - name: Run API testing
+      - name: Run API testing on staging
         run: |
           BASE_URL=$(aws lambda get-function-url-config --function-name  ${{ secrets.LAMBDA_FUNCTION_NAME_STAGING }} | jq -r .FunctionUrl | sed 's,/$,,')
+          npx newman run --env-var "BASE_URL=${BASE_URL}" api-tests/example-cleaner-node.postman_collection.json | sed 's,https://[^/]*,https://***,'
+
+      - name: Deploy to production
+        run: |
+          aws lambda update-function-code --function-name ${{ secrets.LAMBDA_FUNCTION_NAME_PRODUCTION }} --zip-file fileb://dist/index.zip
+          sleep 10
+
+      - name: Run API testing on production
+        run: |
+          BASE_URL=$(aws lambda get-function-url-config --function-name  ${{ secrets.LAMBDA_FUNCTION_NAME_PRODUCTION }} | jq -r .FunctionUrl | sed 's,/$,,')
           npx newman run --env-var "BASE_URL=${BASE_URL}" api-tests/example-cleaner-node.postman_collection.json | sed 's,https://[^/]*,https://***,'
