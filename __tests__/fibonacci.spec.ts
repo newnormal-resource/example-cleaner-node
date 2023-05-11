@@ -28,4 +28,12 @@ describe('testing fibonacci', () => {
     // Verify
     expect(actual).toBe(34);
   });
+
+  it('returns 354224848179263100000, if 100 given', () => {
+    // Exercise
+    const actual = fibonacci(100);
+    console.log(actual);
+    // Verify
+    expect(actual).toBe(354224848179263100000);
+  });
 });
