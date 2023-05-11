@@ -120,6 +120,43 @@
 					"response": []
 				},
 				{
+					"name": "GET /fibonacci/50",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify status code\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify response body\", () => {\r",
+									"    pm.expect(pm.response.json()).to.eql({\r",
+									"        fibonacciNumber: 12_586_269_025,\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/fibonacci/50",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"fibonacci",
+								"50"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GET /fibonacci/invalid",
 					"event": [
 						{
