@@ -52,7 +52,6 @@ function route(event: APIGatewayProxyEventV2) {
 export const handler = async (
   event: APIGatewayProxyEventV2
 ): Promise<APIGatewayProxyStructuredResultV2> => {
-  console.log(JSON.stringify(event));
   try {
     return route(event);
   } catch (e) {
