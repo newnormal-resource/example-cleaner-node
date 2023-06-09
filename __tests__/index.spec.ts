@@ -77,6 +77,21 @@ describe('testing index', () => {
       });
     });
 
+    it('returns fibonacci number 12,586,269,025, if /fibonacci/50 is called', async () => {
+      // Setup
+      const req = request();
+      req.rawPath = '/fibonacci/50';
+
+      // Exercise
+      const actual = await handler(req);
+
+      // Verify
+      expect(actual.statusCode).toBe(200);
+      expect(JSON.parse(actual.body ?? '')).toStrictEqual({
+        fibonacciNumber: 12_586_269_025,
+      });
+    });
+
     it('returns 400, if /fibonacci is called with invalid param', async () => {
       // Setup
       const req = request();
