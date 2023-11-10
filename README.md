@@ -128,7 +128,7 @@ Example for an error case:
 [//]: # "cspell:disable"
 
 ```console
-$ sed -n '29,30p' ./src/cspell-example.ts 
+$ sed -n '29,30p' ./src/cspell-example.ts
 const spellEror = 'A exmaple of spelling error';
 console.log(spellEror);
 $ npm run lint:spell
